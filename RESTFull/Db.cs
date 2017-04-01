@@ -8,7 +8,7 @@ namespace RESTFull
     ///</summary>
     public class Db : DbContext
     {
-        DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<MenuItem> MenuItems { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=./Main.db");
