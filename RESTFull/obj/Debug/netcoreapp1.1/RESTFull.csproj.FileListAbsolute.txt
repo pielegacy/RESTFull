@@ -1,0 +1,8 @@
+F:\Onedrive\Uni\2-1\Dev Project 1 - Tools & Practices\RESTFull\RESTFull\bin\Debug\netcoreapp1.1\RESTFull.deps.json
+F:\Onedrive\Uni\2-1\Dev Project 1 - Tools & Practices\RESTFull\RESTFull\bin\Debug\netcoreapp1.1\RESTFull.runtimeconfig.json
+F:\Onedrive\Uni\2-1\Dev Project 1 - Tools & Practices\RESTFull\RESTFull\bin\Debug\netcoreapp1.1\RESTFull.runtimeconfig.dev.json
+F:\Onedrive\Uni\2-1\Dev Project 1 - Tools & Practices\RESTFull\RESTFull\bin\Debug\netcoreapp1.1\RESTFull.dll
+F:\Onedrive\Uni\2-1\Dev Project 1 - Tools & Practices\RESTFull\RESTFull\bin\Debug\netcoreapp1.1\RESTFull.pdb
+F:\Onedrive\Uni\2-1\Dev Project 1 - Tools & Practices\RESTFull\RESTFull\obj\Debug\netcoreapp1.1\RESTFull.AssemblyInfo.cs
+F:\Onedrive\Uni\2-1\Dev Project 1 - Tools & Practices\RESTFull\RESTFull\obj\Debug\netcoreapp1.1\RESTFull.dll
+F:\Onedrive\Uni\2-1\Dev Project 1 - Tools & Practices\RESTFull\RESTFull\obj\Debug\netcoreapp1.1\RESTFull.pdb
