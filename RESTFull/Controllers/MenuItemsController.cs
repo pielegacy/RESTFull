@@ -12,13 +12,14 @@ namespace RESTFull.Controllers
     {
         // GET api/MenuItems?name=example name
         [HttpGet]
-        public List<MenuItem> Get(string name = "")
+        public List<MenuItem> Get(string name = "", string type = "")
         {
             // Use the database object
             var db = new Db();
             // get the menu items
             var result = db.MenuItems.ToList();
             result = name != "" ? db.MenuItems.Where(m => m.Name.ToLower().Contains(name)).ToList() : result;
+            result = type != "" ? db.MenuItems.Where(m => m.Type == (MenuItemType)Enum.Parse(typeof(MenuItemType), type)).ToList() : result;
             return result;
         }
 
