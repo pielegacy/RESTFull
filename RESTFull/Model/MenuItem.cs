@@ -30,5 +30,7 @@ namespace RESTFull.Models
 
         public int Calories { get; set; }
 
+        public decimal Discount { get; set; }
+
     }
 }
