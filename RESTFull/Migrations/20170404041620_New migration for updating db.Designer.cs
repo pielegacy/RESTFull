@@ -9,9 +9,10 @@ using RESTFull.Models;
 namespace RESTFull.Migrations
 {
     [DbContext(typeof(Db))]
-    partial class DbModelSnapshot : ModelSnapshot
+    [Migration("20170404041620_New migration for updating db")]
+    partial class Newmigrationforupdatingdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1");
