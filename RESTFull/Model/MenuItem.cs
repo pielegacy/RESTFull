@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace RESTFull.Models
@@ -29,8 +28,6 @@ namespace RESTFull.Models
         public MenuItemType Type { get; set; }
 
         public int Calories { get; set; }
-
-        public decimal Discount { get; set; }
 
     }
 }
