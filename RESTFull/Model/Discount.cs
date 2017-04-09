@@ -14,10 +14,6 @@ namespace RESTFull.Models
         public int Id { get; set; }
 
         [RequiredAttribute]
-        public int MenuItemId { get; set; }
-        [RequiredAttribute]
-        public MenuItem Item { get; set; }
-        [RequiredAttribute]
         public string Description { get; set; }
         [RequiredAttribute]
         public decimal DiscountPercentage { get; set; }

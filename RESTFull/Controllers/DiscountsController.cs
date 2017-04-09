@@ -17,8 +17,6 @@ namespace RESTFull.Controllers
             // Use the database object
             var db = new Db();
             var result = db.Discounts.ToList();
-            foreach(var r in result)
-                r.Item = db.MenuItems.First(m => m.Id == r.MenuItemId);
             return result;
         }
 

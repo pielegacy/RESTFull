@@ -9,8 +9,8 @@ using RESTFull.Models;
 namespace RESTFull.Migrations
 {
     [DbContext(typeof(Db))]
-    [Migration("20170407002257_Added Discounts")]
-    partial class AddedDiscounts
+    [Migration("20170409121407_Implemented new discount system")]
+    partial class Implementednewdiscountsystem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,11 +27,7 @@ namespace RESTFull.Migrations
 
                     b.Property<decimal>("DiscountPercentage");
 
-                    b.Property<int>("MenuItemId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("MenuItemId");
 
                     b.ToTable("Discounts");
                 });
@@ -43,6 +39,8 @@ namespace RESTFull.Migrations
 
                     b.Property<int>("Calories");
 
+                    b.Property<int>("DiscountId");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -52,14 +50,16 @@ namespace RESTFull.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DiscountId");
+
                     b.ToTable("MenuItems");
                 });
 
-            modelBuilder.Entity("RESTFull.Models.Discount", b =>
+            modelBuilder.Entity("RESTFull.Models.MenuItem", b =>
                 {
-                    b.HasOne("RESTFull.Models.MenuItem", "Item")
+                    b.HasOne("RESTFull.Models.Discount", "Discount")
                         .WithMany()
-                        .HasForeignKey("MenuItemId")
+                        .HasForeignKey("DiscountId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

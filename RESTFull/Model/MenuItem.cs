@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RESTFull.Models
 {
@@ -29,5 +30,12 @@ namespace RESTFull.Models
 
         public int Calories { get; set; }
 
+        public int DiscountId { get; set; }
+
+        public Discount Discount { get; set; }
+
+        [NotMappedAttribute]
+        // Calculated retail price
+        public decimal RetailPrice => Discount != null ? Price * Discount.DiscountPercentage : Price;
     }
 }
