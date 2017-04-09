@@ -29,10 +29,10 @@ namespace RESTFull.Models
         public MenuItemType Type { get; set; }
 
         public int Calories { get; set; }
+        [ForeignKeyAttribute("Discount")]
+        public int? DiscountId { get; set; }
 
-        public int DiscountId { get; set; }
-
-        public Discount Discount { get; set; }
+        public virtual Discount Discount { get; set; }
 
         [NotMappedAttribute]
         // Calculated retail price
