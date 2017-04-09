@@ -20,6 +20,8 @@ namespace RESTFull.Controllers
             var result = db.MenuItems.ToList();
             result = name != "" ? db.MenuItems.Where(m => m.Name.ToLower().Contains(name)).ToList() : result;
             result = type != "" ? db.MenuItems.Where(m => m.Type == (MenuItemType)Enum.Parse(typeof(MenuItemType), type)).ToList() : result;
+            foreach (MenuItem m in result)
+                m.Discount = m.DiscountId.HasValue ? db.Discounts.First(d => d.Id == m.DiscountId) : null;
             return result;
         }
 
@@ -42,7 +44,11 @@ namespace RESTFull.Controllers
             // Use the database object
             using (var db = new Db())
             {
-                db.MenuItems.Add(value);
+                // Ensure that invalid discountIds are taken into account
+                if (value.DiscountId.HasValue && !db.Discounts.Select(d => d.Id).ToList().Contains(value.DiscountId.Value))
+                    value.DiscountId = null;
+                if (ModelState.IsValid)
+                    db.MenuItems.Add(value);
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
             }

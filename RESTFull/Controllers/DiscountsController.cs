@@ -39,7 +39,8 @@ namespace RESTFull.Controllers
             // Use the database object
             using (var db = new Db())
             {
-                db.Discounts.Add(value);
+                if (ModelState.IsValid && value.DiscountPercentage != 0)
+                    db.Discounts.Add(value);
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
             }
