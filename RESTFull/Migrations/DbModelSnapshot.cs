@@ -38,7 +38,7 @@ namespace RESTFull.Migrations
 
                     b.Property<int>("Calories");
 
-                    b.Property<int>("DiscountId");
+                    b.Property<int?>("DiscountId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -58,8 +58,7 @@ namespace RESTFull.Migrations
                 {
                     b.HasOne("RESTFull.Models.Discount", "Discount")
                         .WithMany()
-                        .HasForeignKey("DiscountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DiscountId");
                 });
         }
     }

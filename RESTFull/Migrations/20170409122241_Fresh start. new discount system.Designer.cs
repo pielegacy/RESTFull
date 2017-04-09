@@ -9,8 +9,8 @@ using RESTFull.Models;
 namespace RESTFull.Migrations
 {
     [DbContext(typeof(Db))]
-    [Migration("20170409121407_Implemented new discount system")]
-    partial class Implementednewdiscountsystem
+    [Migration("20170409122241_Fresh start. new discount system")]
+    partial class Freshstartnewdiscountsystem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,7 +39,7 @@ namespace RESTFull.Migrations
 
                     b.Property<int>("Calories");
 
-                    b.Property<int>("DiscountId");
+                    b.Property<int?>("DiscountId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -59,8 +59,7 @@ namespace RESTFull.Migrations
                 {
                     b.HasOne("RESTFull.Models.Discount", "Discount")
                         .WithMany()
-                        .HasForeignKey("DiscountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DiscountId");
                 });
         }
     }

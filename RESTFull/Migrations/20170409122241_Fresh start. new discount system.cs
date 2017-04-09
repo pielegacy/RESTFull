@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RESTFull.Migrations
 {
-    public partial class Implementednewdiscountsystem : Migration
+    public partial class Freshstartnewdiscountsystem : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,7 @@ namespace RESTFull.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Calories = table.Column<int>(nullable: false),
-                    DiscountId = table.Column<int>(nullable: false),
+                    DiscountId = table.Column<int>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     Type = table.Column<int>(nullable: false)
@@ -42,7 +42,7 @@ namespace RESTFull.Migrations
                         column: x => x.DiscountId,
                         principalTable: "Discounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
