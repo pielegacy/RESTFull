@@ -8,21 +8,23 @@ using RESTFull.Models;
 namespace RESTFull.Controllers
 {
     [Route("api/[controller]")]
-    public class MenuItemsController : Controller
+    public class CombosController : Controller
     {
         // GET api/MenuItems?name=example name
         [HttpGet]
-        public List<MenuItem> Get(string name = "", string type = "")
+        public List<Combo> Get()
         {
             // Use the database object
             var db = new Db();
-            // get the menu items
-            var result = db.MenuItems.ToList();
-            result = name != "" ? db.MenuItems.Where(m => m.Name.ToLower().Contains(name)).ToList() : result;
-            result = type != "" ? db.MenuItems.Where(m => m.Type == (MenuItemType)Enum.Parse(typeof(MenuItemType), type)).ToList() : result;
-            if (db.Discounts.Count() > 0)
-                foreach (MenuItem m in result)
-                    m.Discount = m.DiscountId.HasValue ? db.Discounts.First(d => d.Id == m.DiscountId) : null;
+            var result = db.Combos.ToList();
+            foreach (var c in result)
+            {
+                foreach (var i in db.ComboItems.ToList())
+                {
+                    if (i.ComboId == c.ComboId)
+                        c.Items.Add(db.MenuItems.First(m => m.Id == i.MenuItemId));
+                }
+            }
             return result;
         }
 
@@ -40,16 +42,13 @@ namespace RESTFull.Controllers
 
         // POST api/MenuItems
         [HttpPost]
-        public async void Post([FromBody]MenuItem value)
+        public async void Post([FromBody]Discount value)
         {
             // Use the database object
             using (var db = new Db())
             {
-                // Ensure that invalid discountIds are taken into account
-                if (value.DiscountId.HasValue && !db.Discounts.Select(d => d.Id).ToList().Contains(value.DiscountId.Value))
-                    value.DiscountId = null;
-                if (ModelState.IsValid)
-                    db.MenuItems.Add(value);
+                if (ModelState.IsValid && value.DiscountPercentage != 0)
+                    db.Discounts.Add(value);
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
             }

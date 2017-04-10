@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RESTFull.Models
 {
@@ -12,10 +14,13 @@ namespace RESTFull.Models
     {
         [KeyAttribute]
         public int ComboId { get; set; }
-    
+
         [RequiredAttribute]
         public string ComboDescription { get; set; }
-        
+
         public decimal? ComboPrice { get; set; }
+
+        [NotMappedAttribute]
+        public List<MenuItem> Items = new List<MenuItem>();
     }
 }
