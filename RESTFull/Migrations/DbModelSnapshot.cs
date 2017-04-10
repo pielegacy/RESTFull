@@ -16,6 +16,34 @@ namespace RESTFull.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1");
 
+            modelBuilder.Entity("RESTFull.Models.Combo", b =>
+                {
+                    b.Property<int>("ComboId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ComboDescription")
+                        .IsRequired();
+
+                    b.Property<decimal?>("ComboPrice");
+
+                    b.HasKey("ComboId");
+
+                    b.ToTable("Combos");
+                });
+
+            modelBuilder.Entity("RESTFull.Models.ComboItem", b =>
+                {
+                    b.Property<int>("MenuItemId");
+
+                    b.Property<int>("ComboId");
+
+                    b.HasKey("MenuItemId", "ComboId");
+
+                    b.HasAlternateKey("ComboId", "MenuItemId");
+
+                    b.ToTable("ComboItems");
+                });
+
             modelBuilder.Entity("RESTFull.Models.Discount", b =>
                 {
                     b.Property<int>("Id")
@@ -51,7 +79,20 @@ namespace RESTFull.Migrations
 
                     b.HasIndex("DiscountId");
 
-                    b.ToTable("MenuItem");
+                    b.ToTable("MenuItems");
+                });
+
+            modelBuilder.Entity("RESTFull.Models.ComboItem", b =>
+                {
+                    b.HasOne("RESTFull.Models.Combo", "Combo")
+                        .WithMany()
+                        .HasForeignKey("ComboId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RESTFull.Models.MenuItem", "MenuItem")
+                        .WithMany()
+                        .HasForeignKey("MenuItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RESTFull.Models.MenuItem", b =>
