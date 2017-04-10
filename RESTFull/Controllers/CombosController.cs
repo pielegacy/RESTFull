@@ -10,7 +10,7 @@ namespace RESTFull.Controllers
     [Route("api/[controller]")]
     public class CombosController : Controller
     {
-        // GET api/MenuItems?name=example name
+        // GET api/Combos
         [HttpGet]
         public List<Combo> Get()
         {
@@ -28,27 +28,26 @@ namespace RESTFull.Controllers
             return result;
         }
 
-        // GET api/MenuItems/5
+        // GET api/Combos/5
         [HttpGet("{id}")]
-        public MenuItem Get(int id)
+        public Combo Get(int id)
         {
             // Use the database object
             using (var db = new Db())
             {
                 // Return only the item which has the same id
-                return db.MenuItems.FirstOrDefault(m => m.Id == id);
+                return db.Combos.FirstOrDefault(m => m.ComboId == id);
             }
         }
 
         // POST api/MenuItems
         [HttpPost]
-        public async void Post([FromBody]Discount value)
+        public async void Post([FromBody]Combo value)
         {
             // Use the database object
             using (var db = new Db())
             {
-                if (ModelState.IsValid && value.DiscountPercentage != 0)
-                    db.Discounts.Add(value);
+                db.Combos.Add(value);
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
             }

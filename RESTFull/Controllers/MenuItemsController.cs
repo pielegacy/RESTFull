@@ -22,7 +22,7 @@ namespace RESTFull.Controllers
             result = type != "" ? db.MenuItems.Where(m => m.Type == (MenuItemType)Enum.Parse(typeof(MenuItemType), type)).ToList() : result;
             if (db.Discounts.Count() > 0)
                 foreach (MenuItem m in result)
-                    m.Discount = m.DiscountId.HasValue ? db.Discounts.First(d => d.Id == m.DiscountId) : null;
+                    m.Discount = m.DiscountId.HasValue ? db.Discounts.FirstOrDefault(d => d.Id == m.DiscountId) : null;
             return result;
         }
 
