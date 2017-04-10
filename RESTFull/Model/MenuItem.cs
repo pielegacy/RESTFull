@@ -36,6 +36,6 @@ namespace RESTFull.Models
 
         [NotMappedAttribute]
         // Calculated retail price
-        public decimal RetailPrice => Discount != null ? Price * Discount.DiscountPercentage : Price;
+        public decimal RetailPrice => Discount != null ? Price * (1-Discount.DiscountPercentage) : Price;
     }
 }
