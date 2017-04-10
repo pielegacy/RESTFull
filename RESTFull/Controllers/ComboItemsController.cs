@@ -10,31 +10,35 @@ namespace RESTFull.Controllers
     [Route("api/[controller]")]
     public class ComboItemsController : Controller
     {
-        // GET api/MenuItems?name=example name
+        // GET api/ComboItems
         [HttpGet]
         public List<ComboItem> Get()
         {
             // Use the database object
             var db = new Db();
             var result = db.ComboItems.ToList();
+            foreach (var a in result)
+            {
+                a.MenuItem = db.MenuItems.FirstOrDefault(d => d.Id == a.MenuItemId);
+                a.Combo= db.Combos.FirstOrDefault(d => d.ComboId == a.ComboId);
+            }                          
             return result;
         }
 
-        // POST api/MenuItems
+        // POST api/ComboItems
         [HttpPost]
-        public async void Post([FromBody]Discount value)
+        public async void Post([FromBody]ComboItem value)
         {
             // Use the database object
             using (var db = new Db())
             {
-                if (ModelState.IsValid && value.DiscountPercentage != 0)
-                    db.Discounts.Add(value);
+                db.ComboItems.Add(value);              
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
             }
         }
 
-        // PUT api/MenuItems/5
+        // PUT api/ComboItems/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

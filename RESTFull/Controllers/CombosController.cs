@@ -17,14 +17,6 @@ namespace RESTFull.Controllers
             // Use the database object
             var db = new Db();
             var result = db.Combos.ToList();
-            foreach (var c in result)
-            {
-                foreach (var i in db.ComboItems.ToList())
-                {
-                    if (i.ComboId == c.ComboId)
-                        c.Items.Add(db.MenuItems.First(m => m.Id == i.MenuItemId));
-                }
-            }
             return result;
         }
 
@@ -40,7 +32,7 @@ namespace RESTFull.Controllers
             }
         }
 
-        // POST api/MenuItems
+        // POST api/Combos
         [HttpPost]
         public async void Post([FromBody]Combo value)
         {
@@ -53,16 +45,30 @@ namespace RESTFull.Controllers
             }
         }
 
-        // PUT api/MenuItems/5
+        // PUT api/Combos/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async void Put(int id, [FromBody]Combo value)
         {
+            value.ComboId=id;
+            using (var db = new Db())
+            {
+                db.Combos.Update(value);
+                // Save the changes without clogging up the main thread
+                await db.SaveChangesAsync();
+            }
         }
 
-        // DELETE api/MenuItems/5
+        // DELETE api/Combos/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async void Delete(int id)
         {
+            using (var db = new Db())
+            {
+                if (db.Combos.Where(a=> a.ComboId == id).Count()>0)
+                    db.Combos.Remove(db.Combos.FirstOrDefault(m => m.ComboId == id));                
+                // Save the changes without clogging up the main thread
+                await db.SaveChangesAsync();
+            }
         }
     }
 }
