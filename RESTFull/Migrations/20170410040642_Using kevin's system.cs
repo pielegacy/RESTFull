@@ -4,10 +4,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RESTFull.Migrations
 {
-    public partial class Freshstartnewdiscountsystem : Migration
+    public partial class Usingkevinssystem : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Combos",
+                columns: table => new
+                {
+                    ComboId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ComboDescription = table.Column<string>(nullable: false),
+                    ComboPrice = table.Column<decimal>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Combos", x => x.ComboId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Discounts",
                 columns: table => new
@@ -45,6 +59,31 @@ namespace RESTFull.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ComboItems",
+                columns: table => new
+                {
+                    MenuItemId = table.Column<int>(nullable: false),
+                    ComboId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComboItems", x => new { x.MenuItemId, x.ComboId });
+                    table.UniqueConstraint("AK_ComboItems_ComboId_MenuItemId", x => new { x.ComboId, x.MenuItemId });
+                    table.ForeignKey(
+                        name: "FK_ComboItems_Combos_ComboId",
+                        column: x => x.ComboId,
+                        principalTable: "Combos",
+                        principalColumn: "ComboId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ComboItems_MenuItems_MenuItemId",
+                        column: x => x.MenuItemId,
+                        principalTable: "MenuItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_MenuItems_DiscountId",
                 table: "MenuItems",
@@ -53,6 +92,12 @@ namespace RESTFull.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ComboItems");
+
+            migrationBuilder.DropTable(
+                name: "Combos");
+
             migrationBuilder.DropTable(
                 name: "MenuItems");
 

@@ -11,11 +11,16 @@ namespace RESTFull
     {
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Discount> Discounts { get; set; }
-        public DbSet<MenuItem> Combos { get; set; }
-        public DbSet<MenuItem>  ComboItems{ get; set; }
+        public DbSet<Combo> Combos { get; set; }
+        public DbSet<ComboItem> ComboItems{ get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=./Main.db");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<ComboItem>()
+            .HasKey(c => new {c.MenuItemId, c.ComboId});
+    }
     }
 }
