@@ -9,8 +9,8 @@ using RESTFull.Models;
 namespace RESTFull.Migrations
 {
     [DbContext(typeof(Db))]
-    [Migration("20170410035205_Add combos")]
-    partial class Addcombos
+    [Migration("20170410035734_fix migration combo")]
+    partial class fixmigrationcombo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

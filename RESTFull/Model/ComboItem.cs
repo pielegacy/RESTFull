@@ -11,12 +11,12 @@ namespace RESTFull.Models
     ///</remarks>
     public class ComboItem
     {
-        [Key, ForeignKey("MenuItem")]
+        [Key]
         public int MenuItemId { get; set; }
 
         public virtual MenuItem MenuItem { get; set; }
 
-        [Key, ForeignKey("Combo")]
+        [Key]
         public int ComboId { get; set; }
 
         public virtual Combo Combo { get; set; }
