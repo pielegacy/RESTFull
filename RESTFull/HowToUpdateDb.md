@@ -7,4 +7,3 @@ Commands
 
     dotnet ef migrations add "Migration Description"
     dotnet ef database update
-
