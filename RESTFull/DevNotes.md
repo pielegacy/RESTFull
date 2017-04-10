@@ -29,3 +29,6 @@ If specified in the commits, you may need to run restore and update if I have ma
         - `using (Db db = new Db()) { ... }`
     - Add `DbSet`'s to the Db object to add more tables
     - Directly message Billson over slack if you wish to do a database migration
+
+## How to work with Models & Controllers
+
