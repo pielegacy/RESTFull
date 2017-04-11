@@ -16,6 +16,8 @@ namespace RESTFull.Controllers
             // Use the database object
             var db = new Db();
             var result = db.Combos.ToList();
+            foreach (var r in result)
+                r.ComboToMenuItems();
             return result;
         }
 
@@ -27,7 +29,10 @@ namespace RESTFull.Controllers
             using (var db = new Db())
             {
                 // Return only the item which has the same id
-                return db.Combos.FirstOrDefault(m => m.ComboId == id);
+                Combo result = db.Combos.FirstOrDefault(m => m.ComboId == id);
+                if (result != null)
+                    result.ComboToMenuItems();
+                return result;
             }
         }
 

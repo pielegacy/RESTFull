@@ -17,11 +17,6 @@ namespace RESTFull.Controllers
             // Use the database object
             var db = new Db();
             var result = db.ComboItems.ToList();
-            foreach (var a in result)
-            {
-                a.MenuItem = db.MenuItems.FirstOrDefault(d => d.Id == a.MenuItemId);
-                a.Combo= db.Combos.FirstOrDefault(d => d.ComboId == a.ComboId);
-            }                          
             return result;
         }
 
