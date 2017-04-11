@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -37,5 +38,8 @@ namespace RESTFull.Models
         [NotMappedAttribute]
         // Calculated retail price
         public decimal RetailPrice => Discount != null ? Price * (100-Discount.DiscountPercentage)/100 : Price;
+
+        [NotMappedAttribute]
+        public string TypeString => Enum.GetName(typeof(MenuItemType), Type);
     }
 }
