@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,22 +33,29 @@ namespace RESTFull.Controllers
 
         // POST api/Combos
         [HttpPost]
-        public async void Post([FromBody]Combo value)
+        public async Task<ActionResult> Post([FromBody]Combo value)
         {
-            // Use the database object
-            using (var db = new Db())
+            if (ModelState.IsValid)
             {
-                db.Combos.Add(value);
-                // Save the changes without clogging up the main thread
-                await db.SaveChangesAsync();
+                // Use the database object
+                using (var db = new Db())
+                {
+                    db.Combos.Add(value);
+                    // Save the changes without clogging up the main thread
+                    await db.SaveChangesAsync();
+                    return new CreatedAtRouteResult("ComboItems", db.Combos.First(c => c.ComboDescription == value.ComboDescription).ComboId);
+                }
+            }
+            else
+            {
+                return new StatusCodeResult(400);
             }
         }
-
         // PUT api/Combos/5
         [HttpPut("{id}")]
         public async void Put(int id, [FromBody]Combo value)
         {
-            value.ComboId=id;
+            value.ComboId = id;
             using (var db = new Db())
             {
                 db.Combos.Update(value);
@@ -64,8 +70,8 @@ namespace RESTFull.Controllers
         {
             using (var db = new Db())
             {
-                if (db.Combos.Where(a=> a.ComboId == id).Count()>0)
-                    db.Combos.Remove(db.Combos.FirstOrDefault(m => m.ComboId == id));                
+                if (db.Combos.Where(a => a.ComboId == id).Count() > 0)
+                    db.Combos.Remove(db.Combos.FirstOrDefault(m => m.ComboId == id));
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
             }
