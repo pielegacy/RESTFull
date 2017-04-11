@@ -26,10 +26,11 @@ namespace RESTFull.Controllers
                 using (var db = new Db())
                 {
                     db.Combos.Add(value.Combo);
+                    await db.SaveChangesAsync();
                     int newComboId = db.Combos.First(c => c.ComboDescription == value.Combo.ComboDescription && c.ComboPrice == value.Combo.ComboPrice).ComboId;
                     foreach (int i in value.ItemIds)
                     {
-                        await db.ComboItems.AddAsync(new ComboItem()
+                        db.ComboItems.Add(new ComboItem()
                         {
                             MenuItemId = i,
                             ComboId = newComboId
