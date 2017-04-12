@@ -39,9 +39,7 @@ namespace RESTFull.Controllers
         {
             using (var db = new Db())
             {
-
-                if (db.ComboItems.Where(a => a.ComboId == value.ComboId && a.MenuItemId == value.MenuItemId).Count() > 0)
-                    db.ComboItems.Remove(db.ComboItems.FirstOrDefault(m => m.ComboId == value.ComboId && m.MenuItemId == value.MenuItemId));
+                db.ComboItems.Remove(value);
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
             }
