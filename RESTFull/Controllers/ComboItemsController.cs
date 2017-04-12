@@ -33,15 +33,15 @@ namespace RESTFull.Controllers
             }
         }
 
-        // DELETE api/MenuItems
-        [HttpDelete("{id}")]
-        public async void Delete(int CId, int MId)
+        // DELETE api/ComboItems
+        [HttpDelete]
+        public async void Delete([FromBody]ComboItem value)
         {
             using (var db = new Db())
             {
 
-                if (db.ComboItems.Where(a => a.ComboId == CId && a.MenuItemId == MId).Count() > 0)
-                    db.ComboItems.Remove(db.ComboItems.FirstOrDefault(m => m.ComboId == CId && m.MenuItemId == MId));
+                if (db.ComboItems.Where(a => a.ComboId == value.ComboId && a.MenuItemId == value.MenuItemId).Count() > 0)
+                    db.ComboItems.Remove(db.ComboItems.FirstOrDefault(m => m.ComboId == value.ComboId && m.MenuItemId == value.MenuItemId));
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
             }
