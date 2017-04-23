@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RESTFull.Migrations
 {
-    public partial class Usingkevinssystem : Migration
+    public partial class Yetanotherdatabaserewipe : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,6 +23,19 @@ namespace RESTFull.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ComboItems",
+                columns: table => new
+                {
+                    MenuItemId = table.Column<int>(nullable: false),
+                    ComboId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComboItems", x => new { x.MenuItemId, x.ComboId });
+                    table.UniqueConstraint("AK_ComboItems_ComboId_MenuItemId", x => new { x.ComboId, x.MenuItemId });
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Discounts",
                 columns: table => new
                 {
@@ -34,6 +47,28 @@ namespace RESTFull.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Discounts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StoreDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ABN = table.Column<string>(nullable: true),
+                    AddressCity = table.Column<string>(nullable: true),
+                    AddressCountry = table.Column<string>(nullable: true),
+                    AddressPostCode = table.Column<string>(nullable: true),
+                    AddressState = table.Column<string>(nullable: true),
+                    AddressStreet = table.Column<string>(nullable: true),
+                    AddressSuburb = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    Proprietor = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StoreDetails", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,31 +94,6 @@ namespace RESTFull.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ComboItems",
-                columns: table => new
-                {
-                    MenuItemId = table.Column<int>(nullable: false),
-                    ComboId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ComboItems", x => new { x.MenuItemId, x.ComboId });
-                    table.UniqueConstraint("AK_ComboItems_ComboId_MenuItemId", x => new { x.ComboId, x.MenuItemId });
-                    table.ForeignKey(
-                        name: "FK_ComboItems_Combos_ComboId",
-                        column: x => x.ComboId,
-                        principalTable: "Combos",
-                        principalColumn: "ComboId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ComboItems_MenuItems_MenuItemId",
-                        column: x => x.MenuItemId,
-                        principalTable: "MenuItems",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_MenuItems_DiscountId",
                 table: "MenuItems",
@@ -93,13 +103,16 @@ namespace RESTFull.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ComboItems");
-
-            migrationBuilder.DropTable(
                 name: "Combos");
 
             migrationBuilder.DropTable(
+                name: "ComboItems");
+
+            migrationBuilder.DropTable(
                 name: "MenuItems");
+
+            migrationBuilder.DropTable(
+                name: "StoreDetails");
 
             migrationBuilder.DropTable(
                 name: "Discounts");

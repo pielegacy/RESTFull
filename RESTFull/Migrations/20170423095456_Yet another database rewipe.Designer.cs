@@ -9,8 +9,8 @@ using RESTFull.Models;
 namespace RESTFull.Migrations
 {
     [DbContext(typeof(Db))]
-    [Migration("20170410040642_Using kevin's system")]
-    partial class Usingkevinssystem
+    [Migration("20170423095456_Yet another database rewipe")]
+    partial class Yetanotherdatabaserewipe
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,17 +83,35 @@ namespace RESTFull.Migrations
                     b.ToTable("MenuItems");
                 });
 
-            modelBuilder.Entity("RESTFull.Models.ComboItem", b =>
+            modelBuilder.Entity("RESTFull.Models.StoreDetails", b =>
                 {
-                    b.HasOne("RESTFull.Models.Combo", "Combo")
-                        .WithMany()
-                        .HasForeignKey("ComboId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.HasOne("RESTFull.Models.MenuItem", "MenuItem")
-                        .WithMany()
-                        .HasForeignKey("MenuItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<string>("ABN");
+
+                    b.Property<string>("AddressCity");
+
+                    b.Property<string>("AddressCountry");
+
+                    b.Property<string>("AddressPostCode");
+
+                    b.Property<string>("AddressState");
+
+                    b.Property<string>("AddressStreet");
+
+                    b.Property<string>("AddressSuburb");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<string>("Proprietor");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoreDetails");
                 });
 
             modelBuilder.Entity("RESTFull.Models.MenuItem", b =>
