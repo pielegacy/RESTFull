@@ -14,6 +14,7 @@ namespace RESTFull
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Combo> Combos { get; set; }
         public DbSet<ComboItem> ComboItems { get; set; }
+        public DbSet<StoreDetails> StoreDetails { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=./Main.db");

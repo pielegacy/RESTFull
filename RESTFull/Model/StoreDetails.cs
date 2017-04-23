@@ -10,7 +10,7 @@ namespace RESTFull.Models
     ///<remark>
     /// In many cases, only one store will be used in a database
     ///</remark>
-    public class Store
+    public class StoreDetails
     {
         [Key]
         public int Id { get; set; }
