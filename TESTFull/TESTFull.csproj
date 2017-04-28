@@ -9,7 +9,4 @@
     <PackageReference Include="MSTest.TestAdapter" Version="1.1.11" />
     <PackageReference Include="MSTest.TestFramework" Version="1.1.11" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RESTFull\RESTFull.csproj" />
-  </ItemGroup>
 </Project>
