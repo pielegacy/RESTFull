@@ -16,10 +16,10 @@ namespace TESTFull
 
         [TestMethod]
         [DataRow("Name", null)]
-        [DataRow( null, "Password")]
-        public void TestMenuItemRequired(string a, string b)
+        [DataRow(null, "Password")]
+        public void TestAuthenticationRequired(string a, string b)
         {
-            Authentication At = new Authentication(UserName = a; Password = b;);
+            Authentication At = new Authentication() { UserName = a; Password = b; };
             if (At.UserName == null)
                 Assert.Fail();
             if (At.Password == null)
