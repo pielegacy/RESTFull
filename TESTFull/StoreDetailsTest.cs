@@ -24,6 +24,7 @@ namespace TESTFull
             SD.AddressStreet = "1234 Some Street";
             SD.AddressSuburb = "Suburb";
             SD.PhoneNumber = "123456789";
+
             Assert.AreEqual("Branch-a", SD.Name);
             Assert.AreEqual("Someone", SD.Proprietor);
             Assert.AreEqual("Melbourne", SD.AddressCity);
@@ -34,6 +35,9 @@ namespace TESTFull
             Assert.AreEqual("1234 Some Street", SD.AddressStreet);
             Assert.AreEqual("Suburb", SD.AddressSuburb);
             Assert.AreEqual("123456789", SD.PhoneNumber);
+
+            //Required Attribute
+            Assert.IsNotNull(SD.Name);
         }
     }
 }

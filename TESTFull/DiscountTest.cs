@@ -12,11 +12,16 @@ namespace TESTFull
             Discount dsc = new Discount() { Description = "Discount Test", DiscountPercentage = 10m };
             Assert.AreEqual("Discount Test", dsc.Description);
             Assert.AreEqual(10m, dsc.DiscountPercentage);
+
+            //Required Attribute
+            Assert.IsNotNull(dsc.DiscountPercentage);
+            Assert.IsNotNull(dsc.Description);
         }
 
         [TestMethod]
         public void TestDiscountRequired()
         {
+            //I can't test discount percentage
             Discount dsc = new Discount() {DiscountPercentage = 10m };
             if (dsc.Description == null)
                 Assert.Fail();            

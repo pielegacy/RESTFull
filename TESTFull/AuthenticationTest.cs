@@ -9,9 +9,14 @@ namespace TESTFull
         [TestMethod]
         public void TestAuthenticationContent()
         {
-            Authentication At = new Authentication() { UserName = "Name1", Password = "Password" };            
+            Authentication At = new Authentication() { UserName = "Name1", Password = "Password" };
+
             Assert.AreEqual("Name1", At.UserName);
             Assert.AreEqual("Password", At.Password);
+
+            //Required Attribute
+            Assert.IsNotNull(At.UserName);
+            Assert.IsNotNull(At.Password);
         }
 
         [TestMethod]

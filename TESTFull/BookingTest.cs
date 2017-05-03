@@ -11,6 +11,7 @@ namespace TESTFull
         public void TestBookingContent(int cap, int able, string name)
         {
             Booking Book = new Booking() { TableCapacity = cap, Available = able, StoreName= name};
+
             Assert.AreEqual(cap, Book.TableCapacity);
             Assert.AreEqual(able, Book.Available);
             Assert.AreEqual(name, Book.StoreName);
@@ -18,6 +19,11 @@ namespace TESTFull
             {
                 Assert.Fail();
             }
+
+            //Required Attribute
+            Assert.IsNotNull(Book.TableCapacity);
+            Assert.IsNotNull(Book.Available);
+            Assert.IsNotNull(Book.StoreName);
         }
 
         [TestMethod]

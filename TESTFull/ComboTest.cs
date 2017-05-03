@@ -12,6 +12,9 @@ namespace TESTFull
             Combo Com = new Combo() { ComboDescription= "Some description", ComboPrice= 9.8m};
             Assert.AreEqual("Some description", Com.ComboDescription);
             Assert.AreEqual(9.8m, Com.ComboPrice);
+
+            //Required Attribute
+            Assert.IsNotNull(Com.ComboDescription);
         }
 
         [TestMethod]
