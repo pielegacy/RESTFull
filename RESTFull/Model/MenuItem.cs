@@ -33,11 +33,13 @@ namespace RESTFull.Models
         [ForeignKeyAttribute("Discount")]
         public int? DiscountId { get; set; }
 
+        public string Description { get; set; }
+
         public virtual Discount Discount { get; set; }
 
         [NotMappedAttribute]
         // Calculated retail price
-        public decimal RetailPrice => Discount != null ? Price * (100-Discount.DiscountPercentage)/100 : Price;
+        public decimal RetailPrice => Discount != null ? Price * (100 - Discount.DiscountPercentage) / 100 : Price;
 
         [NotMappedAttribute]
         public string TypeString => Enum.GetName(typeof(MenuItemType), Type);
