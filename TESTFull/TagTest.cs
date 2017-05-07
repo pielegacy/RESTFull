@@ -25,7 +25,7 @@ namespace TESTFull
         public void TestMenuItemRequired()
         {            
             Tag T = new Tag() { MenuName="SomeMenu"};
-
+            T.TagName = "SomeTag";
             Assert.IsNotNull(T.TagName);
         }
     }
