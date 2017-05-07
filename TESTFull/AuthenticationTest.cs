@@ -24,7 +24,7 @@ namespace TESTFull
         [DataRow(null, "Password")]
         public void TestAuthenticationRequired(string a, string b)
         {
-            Authentication At = new Authentication() { UserName = a; Password = b; };
+            Authentication At = new Authentication() { UserName = a, Password = b };
             if (At.UserName == null)
                 Assert.Fail();
             if (At.Password == null)
