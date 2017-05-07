@@ -10,6 +10,8 @@ namespace RESTFull.Models
     ///</summary>
     public class Tag
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string TagName { get; set; }
         public string MenuName { get; set; }
