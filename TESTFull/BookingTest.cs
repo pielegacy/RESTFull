@@ -38,14 +38,14 @@ namespace TESTFull
 
         //after some consideration this is the best layout for booking
         [TestMethod]
-        [DataRow("Alex", 20, "19:00")]
-        [DataRow("Martin", 04, "10:00")]
-        [DataRow("Kevin", 15, "17:00")]
-        public void TestBookingPerson(string name, DateTime date)
+        [DataRow("Alex", "5/1/2017 10:00 am")]
+        [DataRow("Alex", "5/15/2017 7:00 pm")]
+        [DataRow("Alex", "5/21/2017 00:00 pm")]
+        public void TestBookingPerson(string name, string date)
         {
-            Booking Book = new Booking() { Number = 10, TableCapacity = 6, Take = 4, BookingName = name , Date=date};
+            Booking Book = new Booking() { Number = 10, TableCapacity = 6, Take = 4, BookingName = name , Date=DateTime.Parse(date) };
             Assert.IsNotNull(Book.BookingName);
-            Assert.IsNotNull(Book.Date);
+            Assert.IsNotNull(Book.Date);            
         }
     }
 }
