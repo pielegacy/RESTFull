@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RESTFull.Models;
 
 namespace TESTFull
@@ -40,12 +41,11 @@ namespace TESTFull
         [DataRow("Alex", 20, "19:00")]
         [DataRow("Martin", 04, "10:00")]
         [DataRow("Kevin", 15, "17:00")]
-        public void TestBookingPerson(string name, int date, string time)
+        public void TestBookingPerson(string name, DateTime date)
         {
-            Booking Book = new Booking() { Number = 10, TableCapacity = 6, Take = 4, BookingName = name , Date=date, Time=time};
+            Booking Book = new Booking() { Number = 10, TableCapacity = 6, Take = 4, BookingName = name , Date=date};
             Assert.IsNotNull(Book.BookingName);
             Assert.IsNotNull(Book.Date);
-            Assert.IsNotNull(Book.Time);
         }
     }
 }
