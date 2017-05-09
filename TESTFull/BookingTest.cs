@@ -20,11 +20,6 @@ namespace TESTFull
             {
                 Assert.Fail();
             }
-
-            //Required Attribute
-            Assert.IsNotNull(Book.TableCapacity);
-            Assert.IsNotNull(Book.Available);
-            Assert.IsNotNull(Book.StoreName);
         }
 
         [TestMethod]
@@ -34,12 +29,23 @@ namespace TESTFull
         public void TestBookingRequired(int number, int cap, int able, string name)
         {
             Booking Book = new Booking() { Number = number, TableCapacity = cap, Available = able, StoreName = name };
-            if (Book.TableCapacity == null)
-                Assert.Fail();
-            if (Book.Available == null)
-                Assert.Fail();
-            if (Book.StoreName == null)
-                Assert.Fail();
+           
+            Assert.IsNotNull(Book.TableCapacity);
+            Assert.IsNotNull(Book.Available);
+            Assert.IsNotNull(Book.StoreName);
+        }
+
+        //after some consideration this is the best layout for booking
+        [TestMethod]
+        [DataRow("Alex", 20, "19:00")]
+        [DataRow("Martin", 04, "10:00")]
+        [DataRow("Kevin", 15, "17:00")]
+        public void TestBookingPerson(string name, int date, string time)
+        {
+            Booking Book = new Booking() { Number = 10, TableCapacity = 6, Take = 4, BookingName = name , Date=date, Time=time};
+            Assert.IsNotNull(Book.BookingName);
+            Assert.IsNotNull(Book.Date);
+            Assert.IsNotNull(Book.Time);
         }
     }
 }
