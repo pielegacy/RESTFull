@@ -38,6 +38,7 @@ namespace RESTFull.Controllers
                         Calories = 99,
                         DiscountId = 1,
                         Discount = new Discount() { Id = 1, Description = "Example Discount", DiscountPercentage = 50 },
+                        Tags = new List<Tag>() { new Tag() { TagName = "Example Tag", MenuName = "Example Menu Item Name" } }
                     };
                 case "discount":
                 case "discounts":
@@ -67,6 +68,12 @@ namespace RESTFull.Controllers
                         Type = MenuItemType.Beverage,
                         Calories = 82
                     } }
+                    };
+                case "tag":
+                case "tags":
+                    return new Tag(){
+                        TagName = "Example Tag*",
+                        MenuName = "Menu Item Name"
                     };
                 default:
                     return new Dictionary<string, string>() { ["How To Use"] = HELP_MESSAGE };
