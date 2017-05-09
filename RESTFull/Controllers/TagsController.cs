@@ -38,7 +38,6 @@ namespace RESTFull.Controllers
             // Use the database object
             using (var db = new Db())
             {
-                // Ensure that invalid discountIds are taken into account
                 if (ModelState.IsValid && value.TagName != "" && value.TagName != null)
                     db.Tags.Add(value);
                 // Save the changes without clogging up the main thread
