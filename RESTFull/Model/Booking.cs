@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RESTFull.Models
 {
@@ -7,6 +8,9 @@ namespace RESTFull.Models
     ///</summary>
     public class Booking
     {
+        [Key]
+        public int Id { get; set; }
+
         ///<summary>
         /// The name of the Store which the booking relates to.
         ///</summary>
