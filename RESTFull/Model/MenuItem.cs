@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -43,5 +44,8 @@ namespace RESTFull.Models
 
         [NotMappedAttribute]
         public string TypeString => Enum.GetName(typeof(MenuItemType), Type);
+
+        [NotMappedAttribute]
+        public List<Tag> Tags { get; set; }
     }
 }
