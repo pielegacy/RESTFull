@@ -4202,12 +4202,6 @@
           "Microsoft.Extensions.Logging.Debug": "1.1.1",
           "Microsoft.NETCore.App": "1.1.1",
           "Newtonsoft.Json": "10.0.1"
-        },
-        "compile": {
-          "bin/placeholder/netcoreapp1.1/RESTFull.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/netcoreapp1.1/RESTFull.dll": {}
         }
       }
     }
@@ -11158,9 +11152,6 @@
       "originalTargetFrameworks": [
         "netcoreapp1.1"
       ],
-      "files": {
-        "lib/netcoreapp1.1/TESTFull.dll": "C:\\Users\\strik\\Documents\\RESTFull\\TESTFull\\bin\\placeholder\\netcoreapp1.1\\TESTFull.dll"
-      },
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
@@ -11174,21 +11165,22 @@
     "frameworks": {
       "netcoreapp1.1": {
         "dependencies": {
-          "Microsoft.NETCore.App": {
+          "MSTest.TestFramework": {
             "target": "Package",
-            "version": "1.1.1"
-          },
-          "Microsoft.NET.Test.Sdk": {
-            "target": "Package",
-            "version": "15.0.0"
+            "version": "1.1.11"
           },
           "MSTest.TestAdapter": {
             "target": "Package",
             "version": "1.1.11"
           },
-          "MSTest.TestFramework": {
+          "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "1.1.11"
+            "version": "1.1.1",
+            "autoReferenced": true
+          },
+          "Microsoft.NET.Test.Sdk": {
+            "target": "Package",
+            "version": "15.0.0"
           }
         }
       }
