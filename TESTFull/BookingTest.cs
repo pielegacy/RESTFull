@@ -43,9 +43,10 @@ namespace TESTFull
         [DataRow("Alex", "21 May 2017 12:00")]
         public void TestBookingPerson(string name, string date)
         {
-            Booking Book = new Booking() { Number = 10, TableCapacity = 6, Take = 4, BookingName = name , Date=DateTime.Parse(date) };
+            Booking Book = new Booking() { Number&Capacity = {{10,2}, {11,2}, {12,2}}, People = 6, BookingName = name , Date=DateTime.Parse(date) };
             Assert.IsNotNull(Book.BookingName);
             Assert.IsNotNull(Book.Date);
+            Assert.IsNotNull(Book.People);
             Assert.AreEqual(name, Book.BookingName);
             Assert.AreEqual(date,Book.Date);
         }
