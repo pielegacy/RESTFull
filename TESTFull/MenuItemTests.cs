@@ -9,8 +9,8 @@ namespace TESTFull
         [TestMethod]
         public void TestNewMenuItem()
         {
-            MenuItem testMenuItem = new MenuItem() { Name = "Test Menu Item", Price = 10m, Type = MenuItemType.Main, Calories= 1000};
-            testMenuItem.Description = "some description";            
+            MenuItem testMenuItem = new MenuItem() { Name = "Test Menu Item", Price = 10m, Type = MenuItemType.Main, Calories = 1000 };
+            testMenuItem.Description = "some description";
 
             Assert.AreEqual("Test Menu Item", testMenuItem.Name);
             Assert.AreEqual(10m, testMenuItem.Price);

@@ -9,30 +9,13 @@ using RESTFull.Models;
 namespace RESTFull.Migrations
 {
     [DbContext(typeof(Db))]
-    partial class DbModelSnapshot : ModelSnapshot
+    [Migration("20170507021606_Tags implemented")]
+    partial class Tagsimplemented
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1");
-
-            modelBuilder.Entity("RESTFull.Models.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("BookingName");
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<int>("Number");
-
-                    b.Property<int>("People");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bookings");
-                });
 
             modelBuilder.Entity("RESTFull.Models.Combo", b =>
                 {
@@ -83,8 +66,6 @@ namespace RESTFull.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("Calories");
-
-                    b.Property<string>("Description");
 
                     b.Property<int?>("DiscountId");
 

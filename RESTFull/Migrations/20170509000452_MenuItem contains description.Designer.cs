@@ -9,30 +9,13 @@ using RESTFull.Models;
 namespace RESTFull.Migrations
 {
     [DbContext(typeof(Db))]
-    partial class DbModelSnapshot : ModelSnapshot
+    [Migration("20170509000452_MenuItem contains description")]
+    partial class MenuItemcontainsdescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1");
-
-            modelBuilder.Entity("RESTFull.Models.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("BookingName");
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<int>("Number");
-
-                    b.Property<int>("People");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bookings");
-                });
 
             modelBuilder.Entity("RESTFull.Models.Combo", b =>
                 {

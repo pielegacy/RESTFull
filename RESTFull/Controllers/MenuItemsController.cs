@@ -20,9 +20,8 @@ namespace RESTFull.Controllers
             var result = db.MenuItems.ToList();
             result = name != "" ? db.MenuItems.Where(m => m.Name.ToLower().Contains(name)).ToList() : result;
             result = type != "" ? db.MenuItems.Where(m => m.Type == (MenuItemType)Enum.Parse(typeof(MenuItemType), type)).ToList() : result;
-            if (db.Discounts.Count() > 0)
-                foreach (MenuItem m in result)
-                    m.Discount = m.DiscountId.HasValue ? db.Discounts.FirstOrDefault(d => d.Id == m.DiscountId) : null;
+            foreach (MenuItem m in result)
+                m.Link(db);
             return result;
         }
 
@@ -34,7 +33,10 @@ namespace RESTFull.Controllers
             using (var db = new Db())
             {
                 // Return only the item which has the same id
-                return db.MenuItems.FirstOrDefault(m => m.Id == id);
+                MenuItem res = db.MenuItems.FirstOrDefault(m => m.Id == id);
+                if (res != null)
+                    res.Link(db);
+                return res;
             }
         }
 
