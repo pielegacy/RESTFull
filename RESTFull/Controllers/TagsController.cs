@@ -12,23 +12,11 @@ namespace RESTFull.Controllers
     {
         // GET api/Tags
         [HttpGet]
-        public List<Tag> Get()
+        public IEnumerable<string> Get()
         {
             // Use the database object
             var db = new Db();
-            return db.Tags.ToList();
-        }
-
-        // GET api/Tags/5
-        [HttpGet("{id}")]
-        public Tag Get(int id)
-        {
-            // Use the database object
-            using (var db = new Db())
-            {
-                // Return only the item which has the same id
-                return db.Tags.FirstOrDefault(t => t.Id == id);
-            }
+            return db.Tags.Select(t => t.TagName).Distinct();
         }
 
         // POST api/Tags
