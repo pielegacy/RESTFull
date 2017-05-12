@@ -19,7 +19,7 @@ namespace RESTFull.Models
         // override object.Equals
         public override bool Equals(object obj)
         {
-            return obj.GetType() == typeof(Tag) && (obj as Tag).MenuName.Trim() == MenuName.Trim();
+            return obj.GetType() == typeof(Tag) && (obj as Tag).MenuName.ToLower().Trim() == MenuName.ToLower().Trim();
         }
 
         // override object.GetHashCode
