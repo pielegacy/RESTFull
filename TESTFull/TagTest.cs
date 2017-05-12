@@ -15,9 +15,9 @@ namespace TESTFull
         {                      
             Tag T = new Tag() { TagName = a};
             MenuItem food=new MenuItem(){Name=b, Price=8.8m, Type=MenuItemType.Main};
-            food.Tags.add(T);
+            food.Tags.Add(T);
 
-            Assert.AreSame(food,T.Items[0]);      
+            Assert.AreSame(food.Tags[0],T.TagName);      
             Assert.AreEqual(a, T.TagName);            
 
             //Required Attribute
