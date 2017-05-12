@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RESTFull.Models;
 
 namespace TESTFull
@@ -14,11 +15,10 @@ namespace TESTFull
         {                      
             Tag T = new Tag() { TagName = a};
             MenuItem food=new MenuItem(){Name=b, Price=8.8m, Type=MenuItemType.Main};
-            T.Items.Add(food);
+            food.Tags.add(T);
 
             Assert.AreSame(food,T.Items[0]);      
-            Assert.AreEqual(a, T.TagName);
-            Assert.AreEqual(b, T.MenuName);
+            Assert.AreEqual(a, T.TagName);            
 
             //Required Attribute
             Assert.IsNotNull(T.TagName);
@@ -28,16 +28,9 @@ namespace TESTFull
         public void TestTagRedundancy(string origin, string redundant)
         {
             Tag T1= new Tag() {TagName= origin};
-            Tag T2 = new Tag() {TagName= redundant, MenuName = "Something"};
+            Tag T2 = new Tag() {TagName= redundant};
 
-            T1.TagName= T1.TagName.ToLower();
-            T2.TagName= T2.TagName.ToLower();
-
-            if (T2.TagName == (T1.TagName + " ") || T2.TagName == (" " + T1.TagName) || T2.TagName == T1.TagName)
-            {
-                T1.Items.Add(T2.MenuName);
-                TagController.Delete(T2.id);
-            }            
+            Assert.AreEqual(T1.TagName.ToLower().Trim(),T2.TagName.ToLower().Trim());                                                      
         }
     }
 }
