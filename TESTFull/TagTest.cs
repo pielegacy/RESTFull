@@ -25,6 +25,10 @@ namespace TESTFull
         // }    
 
         [TestMethod]
+        [DataRowAttribute("Chicken","chicken")]
+        [DataRowAttribute("Chicken","chicken ")]
+        [DataRowAttribute("Chicken"," chicken ")]
+        [DataRowAttribute("Chicken"," chicken")]
         public void TestTagRedundancy(string origin, string redundant)
         {
             Tag T1= new Tag() {TagName= origin};
