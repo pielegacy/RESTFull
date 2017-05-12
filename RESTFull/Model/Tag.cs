@@ -15,5 +15,14 @@ namespace RESTFull.Models
         [Required]
         public string TagName { get; set; }
         public string MenuName { get; set; }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            return obj.GetType() == typeof(Tag) && (obj as Tag).MenuName.Trim() == MenuName.Trim();
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode() => (TagName + MenuName).GetHashCode();
     }
 }
