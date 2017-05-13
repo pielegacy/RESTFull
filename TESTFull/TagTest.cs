@@ -7,22 +7,6 @@ namespace TESTFull
     [TestClass]
     public class TagTest
     {
-        // [TestMethod]
-        // [DataRow("Chicken","Caesar Salad")]
-        // [DataRow("Veggie", "Caesar Salad")]
-        // [DataRow("Chicken", "Fried Chicken")]
-        // public void TestNewMenuItem(string a, string b)
-        // {                      
-        //     Tag T = new Tag() { TagName = a};
-        //     MenuItem food=new MenuItem(){Name=b, Price=8.8m, Type=MenuItemType.Main};
-        //     food.Tags.Add(T);
-
-        //     Assert.AreSame(food.Tags[0],T.TagName);      
-        //     Assert.AreEqual(a, T.TagName);            
-
-        //     //Required Attribute
-        //     Assert.IsNotNull(T.TagName);
-        // }    
 
         [TestMethod]
         [DataRowAttribute("Chicken","chicken")]
