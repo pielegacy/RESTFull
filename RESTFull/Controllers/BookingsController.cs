@@ -17,5 +17,30 @@ namespace RESTFull.Controllers
             var result = db.Bookings.ToList();
             return result;
         }
+
+        [HttpGet("{id}")]
+        public Booking Get(int id)
+        {
+            using (var db = new Db())
+            {
+                return db.Bookings.FirstOrDefault(b => b.Id == id);
+            }
+        }
+
+        [HttpPost]
+        public async void Post([FromBody]Booking value)
+        {
+            using (var db = new Db())
+            {
+                if (value.IsValid())
+                {
+                    await db.Bookings.AddAsync(value);
+                    await db.SaveChangesAsync();
+                }
+            }
+        }
+
+        // [HttpPutAttribute]
+
     }
 }

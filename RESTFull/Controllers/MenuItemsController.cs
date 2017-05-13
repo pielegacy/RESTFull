@@ -59,8 +59,14 @@ namespace RESTFull.Controllers
 
         // PUT api/MenuItems/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async void Put(int id, [FromBody]MenuItem value)
         {
+            using (var db = new Db())
+            {
+                db.MenuItems.Attach(value);
+                db.Entry(value).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                await db.SaveChangesAsync();
+            }
         }
 
         // DELETE api/MenuItems/5

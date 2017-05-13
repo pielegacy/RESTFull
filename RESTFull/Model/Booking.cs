@@ -13,19 +13,22 @@ namespace RESTFull.Models
         ///<summary>
         /// The name which the booking is made under
         ///</summary>
+        [Required]
         public string BookingName { get; set; }
         ///<summary>
         /// The date which the booking is made under
         ///</summary>
+        [Required]
         public DateTime Date { get; set; }
         ///<summary>
         /// The table number that has been booked
         ///</summary>
+        [Required]
         public int Number { get; set; }
         ///<summary>
         /// The people at the table booking
         ///</summary>
+        [Required]
         public int People { get; set; }
-
     }
 }
