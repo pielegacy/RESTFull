@@ -18,7 +18,7 @@ namespace RESTFull.Controllers
     {
         // POST api/ComboShort
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody]ComboShortHand value)
+        public async Task<Combo> Post([FromBody]ComboShortHand value)
         {
             if (value.IsValid)
             {
@@ -38,12 +38,56 @@ namespace RESTFull.Controllers
                     }
                     // Save the changes without clogging up the main thread
                     await db.SaveChangesAsync();
-                    return new CreatedAtRouteResult("Combo", newComboId);
+                    return value.Combo;
                 }
             }
             else
             {
-                return new StatusCodeResult(400);
+                return null;
+            }
+        }
+        [HttpPutAttribute("{id}")]
+        public async Task<Combo> Put(int id, [FromBody]ComboShortHand value)
+        {
+            if (value.IsValid)
+            {
+                // Use the database object
+                using (var db = new Db())
+                {
+                    // Remove existing
+                    db.Combos.Remove(db.Combos.FirstOrDefault(c => c.ComboId == id));
+                    db.ComboItems.RemoveRange(db.ComboItems.Where(i => i.ComboId == id));
+                    // Add new
+                    db.Combos.Add(value.Combo);
+                    await db.SaveChangesAsync();
+                    int newComboId = db.Combos.First(c => c.ComboDescription == value.Combo.ComboDescription && c.ComboPrice == value.Combo.ComboPrice).ComboId;
+                    foreach (int i in value.ItemIds)
+                    {
+                        db.ComboItems.Add(new ComboItem()
+                        {
+                            MenuItemId = i,
+                            ComboId = newComboId
+                        });
+                    }
+                    // Save the changes without clogging up the main thread
+                    await db.SaveChangesAsync();
+                    return value.Combo;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        [HttpDelete("{id}")]
+        public async void Delete(int id)
+        {
+            using (var db = new Db())
+            {
+                if (db.Combos.Where(a => a.ComboId == id).Count() > 0)
+                    db.Combos.Remove(db.Combos.FirstOrDefault(m => m.ComboId == id));
+                // Save the changes without clogging up the main thread
+                await db.SaveChangesAsync();
             }
         }
     }

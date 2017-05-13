@@ -42,7 +42,7 @@ namespace RESTFull.Controllers
 
         // POST api/MenuItems
         [HttpPost]
-        public async Task<MenuItem> Post([FromBody]MenuItem value)
+        public async Task<ActionResult> Post([FromBody]MenuItem value)
         {
             // Use the database object
             using (var db = new Db())
@@ -54,13 +54,13 @@ namespace RESTFull.Controllers
                     db.MenuItems.Add(value);
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
-                return value;
+                return new CreatedAtRouteResult("MenuItems", value.Id);
             }
         }
 
         // PUT api/MenuItems/5
         [HttpPut("{id}")]
-        public async Task<MenuItem> Put(int id, [FromBody]MenuItem value)
+        public async Task<ActionResult> Put(int id, [FromBody]MenuItem value)
         {
             using (var db = new Db())
             {
@@ -73,7 +73,7 @@ namespace RESTFull.Controllers
                     await db.MenuItems.AddAsync(res);
                     await db.SaveChangesAsync();
                 }
-                return res;
+                return new CreatedAtRouteResult("MenuItems", value.Id);
             }
         }
 

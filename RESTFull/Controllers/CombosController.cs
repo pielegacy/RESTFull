@@ -58,15 +58,9 @@ namespace RESTFull.Controllers
         }
         // PUT api/Combos/5
         [HttpPut("{id}")]
-        public async void Put(int id, [FromBody]Combo value)
+        public string Put(int id, [FromBody]Combo value)
         {
-            value.ComboId = id;
-            using (var db = new Db())
-            {
-                db.Combos.Update(value);
-                // Save the changes without clogging up the main thread
-                await db.SaveChangesAsync();
-            }
+            return "Please use the comboshort endpoint";
         }
 
         // DELETE api/Combos/5
