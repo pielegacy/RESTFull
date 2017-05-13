@@ -42,7 +42,7 @@ namespace RESTFull.Controllers
 
         // POST api/MenuItems
         [HttpPost]
-        public async void Post([FromBody]MenuItem value)
+        public async Task<MenuItem> Post([FromBody]MenuItem value)
         {
             // Use the database object
             using (var db = new Db())
@@ -54,25 +54,40 @@ namespace RESTFull.Controllers
                     db.MenuItems.Add(value);
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
+                return value;
             }
         }
 
         // PUT api/MenuItems/5
         [HttpPut("{id}")]
-        public async void Put(int id, [FromBody]MenuItem value)
+        public async Task<MenuItem> Put(int id, [FromBody]MenuItem value)
         {
             using (var db = new Db())
             {
-                db.MenuItems.Attach(value);
-                db.Entry(value).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                await db.SaveChangesAsync();
+                MenuItem res = db.MenuItems.FirstOrDefault(m => m.Id == id);
+                db.MenuItems.Remove(res);
+                // Ensure we are not setting a null element
+                if (res != null)
+                {
+                    res = value;
+                    await db.MenuItems.AddAsync(res);
+                    await db.SaveChangesAsync();
+                }
+                return res;
             }
         }
 
         // DELETE api/MenuItems/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<MenuItem> Delete(int id)
         {
+            using (var db = new Db())
+            {
+                var removed = db.MenuItems.FirstOrDefault(m => m.Id == id);
+                db.MenuItems.Remove(removed);
+                await db.SaveChangesAsync();
+                return removed;
+            }
         }
     }
 }
