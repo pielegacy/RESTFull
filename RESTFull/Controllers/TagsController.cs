@@ -21,28 +21,34 @@ namespace RESTFull.Controllers
 
         // POST api/Tags
         [HttpPost]
-        public async void Post([FromBody]Tag value)
+        public async Task<ActionResult> Post([FromBody]Tag value)
         {
             // Use the database object
             using (var db = new Db())
             {
                 if (ModelState.IsValid && value.TagName != "" && value.TagName != null)
+                {
                     db.Tags.Add(value);
-                // Save the changes without clogging up the main thread
-                await db.SaveChangesAsync();
+                    // Save the changes without clogging up the main thread
+                    await db.SaveChangesAsync();
+                    return new CreatedAtRouteResult("Tags", value.Id);
+                }
+                else
+                    return new StatusCodeResult(400);
             }
         }
 
-        // // PUT api/MenuItems/5
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody]string value)
-        // {
-        // }
-
-        // // DELETE api/MenuItems/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
+        // DELETE api/Tags/5
+        [HttpDelete("{id}")]
+        public async Task<Tag> Delete(int id)
+        {
+            using (var db = new Db())
+            {
+                var removed = db.Tags.FirstOrDefault(t => t.Id == id);
+                db.Tags.Remove(removed);
+                await db.SaveChangesAsync();
+                return removed;
+            }
+        }
     }
 }
