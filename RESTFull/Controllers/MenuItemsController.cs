@@ -52,7 +52,7 @@ namespace RESTFull.Controllers
                     value.DiscountId = null;
                 if (ModelState.IsValid)
                 {
-                    await db.MenuItems.AddAsync(value);
+                    db.MenuItems.Add(value);
                     // Save the changes without clogging up the main thread
                     await db.SaveChangesAsync();
                     return new CreatedAtRouteResult("MenuItems", value.Id);
