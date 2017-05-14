@@ -52,9 +52,7 @@ namespace RESTFull.Controllers
                 }
             }
             else
-            {
                 return new StatusCodeResult(400);
-            }
         }
         // PUT api/Combos/5
         [HttpPut("{id}")]

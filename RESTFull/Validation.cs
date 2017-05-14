@@ -10,6 +10,6 @@ namespace RESTFull
     public static class ValidationHelpers
     {
         public static bool IsValid(this Booking val) => !String.IsNullOrEmpty(val.BookingName) && val.Date != null;
-
+        // public static bool IsValid(this StoreDetails val)
     }
 }

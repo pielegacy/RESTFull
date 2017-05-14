@@ -27,7 +27,7 @@ namespace RESTFull.Controllers
             // Use the database object
             using (var db = new Db())
             {
-                db.ComboItems.Add(value);              
+                await db.ComboItems.AddAsync(value);              
                 // Save the changes without clogging up the main thread
                 await db.SaveChangesAsync();
             }

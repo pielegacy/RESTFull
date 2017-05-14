@@ -51,10 +51,14 @@ namespace RESTFull.Controllers
                 if (value.DiscountId.HasValue && !db.Discounts.Select(d => d.Id).ToList().Contains(value.DiscountId.Value))
                     value.DiscountId = null;
                 if (ModelState.IsValid)
-                    db.MenuItems.Add(value);
-                // Save the changes without clogging up the main thread
-                await db.SaveChangesAsync();
-                return new CreatedAtRouteResult("MenuItems", value.Id);
+                {
+                    await db.MenuItems.AddAsync(value);
+                    // Save the changes without clogging up the main thread
+                    await db.SaveChangesAsync();
+                    return new CreatedAtRouteResult("MenuItems", value.Id);
+                }
+                else
+                    return new StatusCodeResult(400);
             }
         }
 
@@ -72,8 +76,10 @@ namespace RESTFull.Controllers
                     res = value;
                     await db.MenuItems.AddAsync(res);
                     await db.SaveChangesAsync();
+                    return new CreatedAtRouteResult("MenuItems", value.Id);
                 }
-                return new CreatedAtRouteResult("MenuItems", value.Id);
+                else
+                    return new StatusCodeResult(400);
             }
         }
 
