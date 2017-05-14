@@ -8,8 +8,9 @@ using RESTFull.Models;
 namespace RESTFull.Controllers
 {
     [Route("api/[controller]")]
-    public class BookingsController
+    public class BookingsController: Controller
     {
+        // GET api/Bookings/
         [HttpGet]
         public IEnumerable<Booking> Get()
         {
@@ -17,7 +18,7 @@ namespace RESTFull.Controllers
             var result = db.Bookings.ToList();
             return result;
         }
-
+        // GET api/Bookings/{id}
         [HttpGet("{id}")]
         public Booking Get(int id)
         {
@@ -26,7 +27,7 @@ namespace RESTFull.Controllers
                 return db.Bookings.FirstOrDefault(b => b.Id == id);
             }
         }
-
+        // POST api/Bookings/
         [HttpPost]
         public async void Post([FromBody]Booking value)
         {
@@ -39,8 +40,42 @@ namespace RESTFull.Controllers
                 }
             }
         }
-
-        // [HttpPutAttribute]
+        // PUT api/Bookings/{id}
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(int id, [FromBody]Booking value)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new Db())
+                {
+                    Booking res = db.Bookings.FirstOrDefault(b => b.Id == id);
+                    db.Bookings.Remove(res);
+                    if (res != null)
+                    {
+                        res = value;
+                        await db.Bookings.AddAsync(res);
+                        await db.SaveChangesAsync();
+                        return new CreatedAtRouteResult("Bookings", value.Id);
+                    }
+                    else
+                        return new StatusCodeResult(400);
+                }
+            }
+            else
+                return new StatusCodeResult(400);
+        }
+        // DELETE api/Bookings/{id}
+        [HttpDelete("{id}")]
+        public async Task<Booking> Delete(int id)
+        {
+            using (var db = new Db())
+            {
+                var removed = db.Bookings.FirstOrDefault(b => b.Id == id);
+                db.Bookings.Remove(removed);
+                await db.SaveChangesAsync();
+                return removed;
+            }
+        }
 
     }
 }
