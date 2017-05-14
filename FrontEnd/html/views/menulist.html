@@ -1,0 +1,45 @@
+<!-- Filtering menu type -->
+<nav class="navbar navbar-default" id="menulistnav">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">
+        Choose Menu Item:
+      </a>
+      <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = ''">All</button>
+
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = 'Main'">Main</button>
+        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = 'Beverage'">Beverage</button>
+        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = 'Dessert'">Dessert</button>
+      </div>
+<!--
+      <div class="btn-group" role="group" data-ng-repeat="t in tagNames">
+          <button type="button" class="btn btn-default navbar-btn">{{t}}</button>
+      </div>
+-->
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search by name" data-ng-model="search">
+    </div>
+  </div>
+</nav>
+
+<!-- Repeating menu item -->
+<div class="panel panel-default" data-ng-repeat="i in menu | filter: menu.typeString = filter | filter: search " id="panels">
+  <div class="panel-heading" ><strong>{{i.name}}</strong></div>
+  <div class="panel-body">
+    <p><i>{{i.description}}</i></p>
+    <hr/>
+    <p>Type: {{i.typeString}}</p>
+    <p>Price: {{i.price | currency}}</p>
+    <p>Calories: {{i.calories}}</p>
+    <p>Discount: {{i.discount}}</p>
+    <p>{{i.id}}</p>
+  </div>
+  <div class="panel-footer">
+    <button class="btn btn-default" type="button" data-ng-click="delete(item,$index)">
+      <span class="glyphicon glyphicon-remove"></span>
+        Delete
+    </button>
+  </div>
+</div>

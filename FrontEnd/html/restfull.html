@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="App">
+  <head>
+    <title>RestFull API</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <!-- CSS -->
+      <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+      <!-- Bootstrap -->
+      <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Top Nav Bar -->
+    <nav class="navbar navbar-default" id="topnav">
+      <div class="navbar-header">
+        <a class="navbar-brand">RestFull API</a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="nav navbar-nav">
+          <li><a href="#/menulist"><span class="glyphicon glyphicon-th-list"></span> MENU LIST</a></li>
+          <li><a href="#/additem"><span class="glyphicon glyphicon-plus"></span> ADD ITEM</a></li>
+          <li><a href="#/restaurantinfo"><span class="glyphicon glyphicon-glass"></span> RESTAURANT INFO</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- =========== -->
+
+    <!-- Page Content -->
+    <div class="container">
+      <ng-view></ng-view>
+    </div>
+
+
+    <!-- jQuery - required for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery-1.12.4.js"></script>
+    <!-- All Bootstrap plug-ins file -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- All Basic AngularJS -->
+    <script src="/js/angular.min.js"></script>
+    <!-- control -->
+    <script src="/js/apprestfull.js"></script>
+    <!-- routing -->
+    <script src="/js/angular-route.min.js"></script>
+  </body>
+</html>
+

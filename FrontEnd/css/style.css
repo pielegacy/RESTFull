@@ -1,0 +1,36 @@
+html,body{
+  margin: 0;
+  padding: 0;
+  background-color: #E8EAF6 !important;
+}
+
+#topnav{
+  background-color: #283593;
+  border-radius: 0;
+}
+#topnav a{
+  color: #EFEBE9;
+  padding: 20px;
+}
+#topnav a:hover{
+  background-color: #5C6BC0;
+}
+
+#menulistnav{
+  background-color: #5C6BC0;
+  border-radius: 0;
+}
+#menulistnav a{
+  color: #EFEBE9;
+}
+#menulistnav button{
+  color: #5C6BC0;
+}
+
+#panels{
+  border-color: #5C6BC0;
+  border-radius: 0;
+}
+#panels .panel-heading,#panels .panel-body{
+    color: #5C6BC0;
+}

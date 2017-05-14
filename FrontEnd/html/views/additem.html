@@ -1,0 +1,57 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading">Add items to the menu</div>
+
+  <div class="panel-body">
+    <p>Type of item added:</p>
+    <select class="form-control" data-ng-model="newItem.type">
+      <option value="1">Main</option>
+      <option value="2">Dessert</option>
+      <option value="3">Beverage</option>
+    </select>
+
+    <br/>
+
+    <div class="input-group">
+      <span class="input-group-addon">Name: </span>
+      <input type="text" class="form-control" placeholder="input name of item" data-ng-model="newItem.name">
+    </div>
+
+    <br/>
+
+    <div class="input-group">
+      <span class="input-group-addon">Price: </span>
+      <input type="text" class="form-control" placeholder="input price of item" data-ng-model="newItem.price">
+    </div>
+    
+    <br/>
+    
+    <div class="input-group">
+      <span class="input-group-addon">Description: </span>
+      <input type="text" class="form-control" placeholder="description of item" data-ng-model="newItem.description">
+    </div>
+    <br/>
+
+    <div class="input-group">
+      <span class="input-group-addon">Calorie: </span>
+      <input type="text" class="form-control" placeholder="how much calorie per serving?" data-ng-model="newItem.calories">
+    </div>
+
+    <br/>
+
+    <label class="radio-inline" for="discount">Is it discounted?</label>
+      <input type="radio" name="discount" id="discount" value=true data-ng-model="item_discount"> Yes
+      <input type="radio" name="discount" id="discount" value=false data-ng-model="item_discount"> No
+
+    <br/>
+    <br/>
+    <button type="button" class="btn btn-success btn-lg" data-ng-click="additem()">Click to Add Item</button>
+    {{item_type}}
+    {{item_name}}
+    {{item_price}}
+    {{item_calorie}}
+    {{item_discount}}
+  </div>
+</div>
+
+<div class="alert alert-success" role="alert" data-ng-if="addSuccess == true" >  <span class="glyphicon glyphicon-thumbs-up"></span> Items successfully added!</div>
