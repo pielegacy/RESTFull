@@ -39,7 +39,15 @@ app.controller('menulistCtrl', function ($scope, $http, $timeout) {
     console.log($scope.tagNames);
   });
   $scope.deleteitem = function (item, index) {
+    console.log(item);
     //DELETE li648-103.members.linode.com/api/MenuItems/item.id
+    $http.delete("http://li648-103.members.linode.com/api/MenuItems/" + item.id).then(function (data) {
+      $scope.menu.splice(item.index, 1);
+      $http.get(jsonLink).then(function (data) {
+        $scope.menu = data.data;
+        //console.log(JSON.stringify($scope.food));
+      });
+    });
   };
 
   $scope.additem = function () {
