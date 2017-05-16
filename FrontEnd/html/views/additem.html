@@ -5,36 +5,38 @@
   <div class="panel-body">
     <p>Type of item added:</p>
     <select class="form-control" data-ng-model="newItem.type">
+      <option value="0">Entree</option>
       <option value="1">Main</option>
       <option value="2">Dessert</option>
       <option value="3">Beverage</option>
+      <option value="4">Side</option>
     </select>
 
     <br/>
 
     <div class="input-group">
       <span class="input-group-addon">Name: </span>
-      <input type="text" class="form-control" placeholder="input name of item" data-ng-model="newItem.name">
+      <input type="text" class="form-control" placeholder="Testsghetti" data-ng-model="newItem.name">
     </div>
 
     <br/>
 
     <div class="input-group">
       <span class="input-group-addon">Price: </span>
-      <input type="text" class="form-control" placeholder="input price of item" data-ng-model="newItem.price">
+      <input type="number" class="form-control" placeholder="29.99" data-ng-model="newItem.price">
     </div>
     
     <br/>
     
     <div class="input-group">
       <span class="input-group-addon">Description: </span>
-      <input type="text" class="form-control" placeholder="description of item" data-ng-model="newItem.description">
+      <input type="text" class="form-control" placeholder="A delicious meal" data-ng-model="newItem.description">
     </div>
     <br/>
 
     <div class="input-group">
       <span class="input-group-addon">Calorie: </span>
-      <input type="text" class="form-control" placeholder="how much calorie per serving?" data-ng-model="newItem.calories">
+      <input type="text" class="form-control" placeholder="220" data-ng-model="newItem.calories">
     </div>
 
     <br/>
