@@ -1,4 +1,3 @@
-
 <div class="panel panel-default">
   <div class="panel-heading">Add items to the menu</div>
 
@@ -25,9 +24,9 @@
       <span class="input-group-addon">Price: </span>
       <input type="number" class="form-control" placeholder="29.99" data-ng-model="newItem.price">
     </div>
-    
+
     <br/>
-    
+
     <div class="input-group">
       <span class="input-group-addon">Description: </span>
       <input type="text" class="form-control" placeholder="A delicious meal" data-ng-model="newItem.description">
@@ -35,25 +34,34 @@
     <br/>
 
     <div class="input-group">
-      <span class="input-group-addon">Calorie: </span>
+      <span class="input-group-addon">Calories: </span>
       <input type="text" class="form-control" placeholder="220" data-ng-model="newItem.calories">
     </div>
 
     <br/>
+    <!--<div class="input-group">
 
-    <label class="radio-inline" for="discount">Is it discounted?</label>
-      <input type="radio" name="discount" id="discount" value=true data-ng-model="item_discount"> Yes
-      <input type="radio" name="discount" id="discount" value=false data-ng-model="item_discount"> No
+      <label class="radio-inline" for="discount">Is it discounted?</label>
+      <input type="checkbox" name="discount" id="discount" value="true" data-ng-model="item_discount"> Yes
+      <input type="radio" name="discount" id="discount" value="false" data-ng-model="item_discount"> No
+    </div>-->
 
+    <div class="input-group">
+      <span class="input-group-addon">Discount Description: </span>
+      <input type="text" class="form-control" id="discountName" placeholder="(Optional) Description" data-ng-model="newDiscount.description" />
+    </div>
+    <br/>
+
+     <div class="input-group">
+      <span class="input-group-addon">Discount Percentage: </span>
+      <input type="number" class="form-control" id="discountName" placeholder="(Optional) 50" data-ng-model="newDiscount.discountPercentage" />
+    </div>
     <br/>
     <br/>
-    <button type="button" class="btn btn-success btn-lg" data-ng-click="additem()">Click to Add Item</button>
-    {{item_type}}
-    {{item_name}}
-    {{item_price}}
-    {{item_calorie}}
-    {{item_discount}}
+    <button type="button" class="btn btn-success btn-lg" data-ng-click="additem()">Click to Add Item</button> {{item_type}}
+    {{item_name}} {{item_price}} {{item_calorie}}
+    <!--{{item_discount}}-->
   </div>
 </div>
 
-<div class="alert alert-success" role="alert" data-ng-if="addSuccess == true" >  <span class="glyphicon glyphicon-thumbs-up"></span> Items successfully added!</div>
+<div class="alert alert-success" role="alert" data-ng-if="addSuccess == true"> <span class="glyphicon glyphicon-thumbs-up"></span> Items successfully added!</div>
