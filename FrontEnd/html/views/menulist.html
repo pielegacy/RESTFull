@@ -5,14 +5,14 @@
       <a class="navbar-brand">
         Choose Menu Item:
       </a>
-      <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = ''">All</button>
+      <button type="button" class="btn btn-default navbar-btn" data-ng-click="filterset = ''">All</button>
 
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = 'Entree'">Entree</button>
-        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = 'Main'">Main</button>
-        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = 'Beverage'">Beverage</button>
-        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = 'Dessert'">Dessert</button>
-        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filter = 'Side'">Side</button>
+        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filterset = 'Entree'">Entree</button>
+        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filterset = 'Main'">Main</button>
+        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filterset = 'Beverage'">Beverage</button>
+        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filterset = 'Dessert'">Dessert</button>
+        <button type="button" class="btn btn-default navbar-btn" data-ng-click="filterset = 'Side'">Side</button>
       </div>
       <!--
       <div class="btn-group" role="group" data-ng-repeat="t in tagNames">
@@ -27,14 +27,14 @@
 </nav>
 
 <!-- Repeating menu item -->
-<div class="panel panel-default" data-ng-repeat="i in menu | filter: menu.typeString = filter | filter: search " id="panels">
+<div class="panel panel-default" data-ng-repeat="i in menu | filter: menu.typeString = filterset | filter: search " id="panels">
   <div class="panel-heading"><strong>{{i.name}}</strong></div>
   <div class="panel-body">
     <p><i>{{i.description}}</i></p>
     <hr/>
     <p>Type: {{i.typeString}}</p>
     <span data-ng-show="i.retailPrice === i.price"><p>Price: {{i.price | currency}}</p></span>
-    <span data-ng-show="i.retailPrice !== i.price"><p>Price: {{i.retailPrice | currency}} <del>{{i.price | currency}}</del> ({{i.discount.discountPercentage}}% off)</p></span> 
+    <span data-ng-show="i.retailPrice !== i.price"><p>Price: {{i.retailPrice | currency}} <del>{{i.price | currency}}</del> ({{i.discount.discountPercentage}}% off)</p></span>
     <p>Calories: {{i.calories}}</p>
     <!--<p>Discount: {{i.discount}}</p>-->
     <!--<p>{{i.id}}</p>-->

@@ -24,6 +24,8 @@ app.config(function ($routeProvider, $locationProvider) {
 app.controller('menulistCtrl', function ($scope, $http, $timeout) {
   //variables
   $scope.addSuccess = false;
+  $scope.menu = [];
+
 
   var jsonLink = "http://li648-103.members.linode.com/api/MenuItems";
   $http.get(jsonLink).then(function (data) {
