@@ -53,7 +53,8 @@ app.controller('menulistCtrl', function ($scope, $http, $timeout) {
   };
 
   $scope.additem = function () {
-    if ($scope.newDiscount.description.length != 0 && $scope.newDiscount.discountPercentage.length != 0) {
+    if ($scope.newDiscount !== undefined && $scope.newDiscount.description !== undefined && $scope.newDiscount.discountPercentage !== undefined &&
+      $scope.newDiscount.description.length != 0 && $scope.newDiscount.discountPercentage.length != 0) {
       $http.post("http://li648-103.members.linode.com/api/Discounts", JSON.stringify($scope.newDiscount)).then(function (data) {
         $scope.newItem.discountId = data.data;
         $http.post("http://li648-103.members.linode.com/api/MenuItems", JSON.stringify($scope.newItem)).then(function (data) {
