@@ -20,19 +20,17 @@ In the original release, RESTFull should provide endpoints for **all aspects of 
 
 ## Developers
 
-- Tushar Bassi
+- Kevin Christopher
     - Product Owner
-    - Test Overseer
+    - Unit Testing
+    - Data Modelling
 - Alex Billson
     - Head Programmer
     - Database Structure & Migrations
 - Martin Lim
     - Head of Front-End Design
     - UI Designer
-- Kevin Christopher
-    - Backend Developer
-    - Data Modelling
-    
+
 ## Technical Details
 
 - Backend
